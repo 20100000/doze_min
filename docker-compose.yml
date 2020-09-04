@@ -1,0 +1,40 @@
+version: "3"
+volumes:
+  data-volume: {}
+services:
+  db:
+    image: 'mysql:5.7'
+    container_name: '12min_mysql'
+    volumes:
+      - '~/dev/dbs-data/mysql:/var/lib/mysql'
+      - './db/doze_min.sql:/docker-entrypoint-initdb.d/init.sql'
+    restart: 'always'
+    expose:
+      - '3306'
+    ports:
+      - '3308:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'doze_min'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'pass'
+    command: 'mysqld --init-file="/docker-entrypoint-initdb.d/init.sql"'
+  app:
+    container_name: 12min_node
+    build: .
+    command: npm run go
+    links:
+      - db:db
+    ports:
+      - "3000:3000"
+      - "7788:7788"
+    volumes:
+      - .:/usr/app
+    environment:
+        - DB_HOST=db
+        - DB_PORT=3308
+        - DB_DATABASE=doze_min
+        - DB_USERNAME=root
+        - DB_PASSWORD=root
+        - JWT_SECRET=ED46CB0D0B9A5B707B40CF9BC7E06259
+
