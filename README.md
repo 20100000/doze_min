@@ -47,6 +47,12 @@ GET
 http://localhost:3000/music/1
 </pre>
 
+Search music
+<pre>
+GET
+http://localhost:3000/music/search/write_title_or_description
+</pre>
+
 Play music
 <pre>
 get return in json "file_path": "1599242572752-517991237-teste.mp3",

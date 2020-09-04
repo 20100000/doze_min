@@ -27,7 +27,6 @@ services:
       - db:db
     ports:
       - "3000:3000"
-      - "7788:7788"
     volumes:
       - .:/usr/app
     environment:
