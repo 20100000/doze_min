@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import config from '../lib/config';
+import config from './config';
 
 module.exports = (req, res, next) => {
     const auth = req.headers.authorization;

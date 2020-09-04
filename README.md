@@ -26,8 +26,16 @@ Docker-composer MySql , Nodejs and NPM
 <pre>
     docker-compose up --build
 </pre>
-
-<h4> APIs</h4>
+<h4>create token</h4>
+<pre>
+    POST
+    http://localhost:3000/login
+    {
+        "password": "123456",
+        "email": "teste@12min.com"
+    }
+</pre>
+<h4> APIs with token in Authorization header</h4>
 Show all audiobook 
 <pre>
 GET

@@ -1,5 +1,4 @@
 const _autenticar = async (req, res, next, model, jwt, config) => {
-    console.log('aquiiiiiiiiiiiiiiiiiiiiiiiiiiiii',req.body)
     const {password, email } = req.body;
     try {
         const data = await model.getLogin(email, password);
