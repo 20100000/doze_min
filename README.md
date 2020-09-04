@@ -47,4 +47,48 @@ GET
 http://localhost:3000/music/play/1599242572752-517991237-teste.mp3
 </pre>
 
+Delete music
+<pre>
+DELETE
+http://localhost:3000/music/1
+</pre>
+Update music
+<pre>
+PUT
+http://localhost:3000/music/1
+{
+	"title": "Bem que se quiz 5",
+	"description": "uma bosta meda m5",
+	"file_path": "123452226testessss.mp3",
+	"tags": [
+		{
+			"id": 8,
+			"name": "AXEe"
+		},
+		{
+			"id": 9,
+			"name": "MPBb"
+		}
+	]
+}
+</pre>
+Save music
+<pre>
+POST
+http://localhost:3000/music
+{
+	"title": "Bem que se quiz 2",
+	"description": "uma bosta meda m",
+	"file_path": "teste.mp3",
+	"tags": [
+		{
+			"name": "AXE"
+		},
+		{
+			"name": "MPB"
+		}
+	]
+}
+</pre>
+
 
