@@ -85,9 +85,23 @@ const _rmMusic = async (id) => {
     }
 }
 
+const _rmTag = async (id) => {
+    let conn = null;
+    try{
+        conn = await database.getConnection(true);
+        const data = await database.execute(conn, queries.QDeleteTag,[id]);
+        return data;
+    }catch (e) {
+        //todo
+    }finally {
+        database.closeConn(conn);
+
+    }
+}
 
 module.exports.getAllMusic =_getAllMusic;
 module.exports.getMusic =_getMusic;
 module.exports.insertMusic =_insertMusic;
 module.exports.mUpdateMusic =_updateMusic;
 module.exports.rmMusic =_rmMusic;
+module.exports.rmTag =_rmTag;

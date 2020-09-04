@@ -1,25 +1,3 @@
-import multer from "multer";
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads/')
-    },
-
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, uniqueSuffix+'-'+file.originalname)
-    }
-});
-
-const fileFilter = (req,file,cb) => {
-    if(file.mimetype === "audio/mpeg" ){
-        cb(null, true);
-    }else{
-        cb(new Error("Music uploaded is not of type audio/mpeg"),false);
-    }
-}
-
-const upload = multer({storage: storage, fileFilter : fileFilter});
-
 const toJsonObject = async (data) =>{
     data.forEach((item,idx) => {
         item.tags = JSON.parse(item.tags)
@@ -28,32 +6,23 @@ const toJsonObject = async (data) =>{
 }
 
 const _saveMusic = async (req, res, next, model) => {
-    console.log('aquiiiiiiiiiiiiiiiiii',req.file);
-    upload.single( 'audio', ( err ) => {
-        if(err){
-            res.status(400);
-            return res.send(JSON.stringify({success: false, error: err}));
-        }
-        return res.send(JSON.stringify({success: true, data: req.file.filename}));
+    try {
+        const music = req.body;
+        const file = req.files;
+        console.log('fileeeeeeeeeeeeeeeeeeee', file)
 
-    });
-    // try {
-    //     const music = req.body;
-    //     const file = req.files;
-    //     console.log('fileeeeeeeeeeeeeeeeeeee', file)
-    //
-    //     if (music.title && music.file_path) {
-    //         const data = await model.insertMusic(music);
-    //         return res.send(JSON.stringify({success: true, data: data}));
-    //     } else {
-    //         res.status(400);
-    //         return res.send(JSON.stringify({success: false, error: 'insira title e file_path'}));
-    //     }
-    //
-    // } catch (e) {
-    //     res.status(400);
-    //     return res.send(JSON.stringify({success: false, error: e}));
-    // }
+        if (music.title && music.file_path) {
+            const data = await model.insertMusic(music);
+            return res.send(JSON.stringify({success: true, data: data}));
+        } else {
+            res.status(400);
+            return res.send(JSON.stringify({success: false, error: 'insira title e file_path'}));
+        }
+
+    } catch (e) {
+        res.status(400);
+        return res.send(JSON.stringify({success: false, error: e}));
+    }
 };
 
 const _musicAll = async (req, res, next, model) => {
@@ -71,14 +40,14 @@ const _musicAll = async (req, res, next, model) => {
 
 const _getMusic = async (req, res, next, model) => {
     const id = req.params.id
-    // try {
+    try {
         let data = await model.getMusic(id, false);
         data = await toJsonObject (data);
         return res.send(JSON.stringify({success: true, data: data}));
-    // } catch (e) {
-    //     res.status(400);
-    //     return res.send(JSON.stringify({success: false, error: e}));
-    // }
+    } catch (e) {
+        res.status(400);
+        return res.send(JSON.stringify({success: false, error: e}));
+    }
 };
 
 const _searchMusic = async (req, res, next, model) => {
@@ -112,13 +81,24 @@ const _updateMusic = async (req, res, next, model) => {
 
 const _deleteMusic = async (req, res, next, model) => {
     const id = req.params.id
-    // try {
+    try {
     let data = await model.rmMusic(id);
     return res.send(JSON.stringify({success: true, data: data}));
-    // } catch (e) {
-    //     res.status(400);
-    //     return res.send(JSON.stringify({success: false, error: e}));
-    // }
+    } catch (e) {
+        res.status(400);
+        return res.send(JSON.stringify({success: false, error: e}));
+    }
+};
+
+const _deleteTag = async (req, res, next, model) => {
+    const id = req.params.id
+    try {
+        let data = await model.rmTag(id);
+        return res.send(JSON.stringify({success: true, data: data}));
+    } catch (e) {
+        res.status(400);
+        return res.send(JSON.stringify({success: false, error: e}));
+    }
 };
 
 const _playMusic = async (req, res, next, fs) => {
@@ -154,6 +134,7 @@ const getController = (model,fs) => ({
     searchMusic: (req, res, next) => _searchMusic(req, res, next, model),
     updateMusic: (req, res, next) => _updateMusic(req, res, next, model),
     deleteMusic: (req, res, next) => _deleteMusic(req, res, next, model),
+    deleteTag: (req, res, next) => _deleteTag(req, res, next, model),
     playMusic: (req, res, next) => _playMusic(req, res, next, fs),
 });
 

@@ -17,5 +17,6 @@ router.post('/file', molter.upload.single('audio'), async (req, res, next) => {
 router.post('/', controller.saveMusic);
 router.put('/:id', controller.updateMusic);
 router.delete('/:id', controller.deleteMusic);
+router.delete('/tag/:id', controller.deleteTag);
 
 module.exports = { path: PATH, router };

@@ -35,7 +35,7 @@ Docker-composer MySql , Nodejs and NPM
         "email": "teste@12min.com"
     }
 </pre>
-<h4> APIs with token in Authorization header</h4>
+<h4> APIs with token in Authorization header, add bearer</h4>
 Show all audiobook 
 <pre>
 GET
@@ -55,11 +55,18 @@ GET
 http://localhost:3000/music/play/1599242572752-517991237-teste.mp3
 </pre>
 
-Delete music
+Delete music and tags
 <pre>
 DELETE
 http://localhost:3000/music/1
 </pre>
+
+Delete tag
+<pre>
+DELETE
+http://localhost:3000/music/tag/1
+</pre>
+
 Update music
 <pre>
 PUT
@@ -80,6 +87,7 @@ http://localhost:3000/music/1
 	]
 }
 </pre>
+
 Save music
 <pre>
 POST

@@ -31,6 +31,7 @@ const QSelectAllMusics = `SELECT m.id, m.title, m.description, m.file_path, JSON
 const QDeleteMusic = `DELETE music, tags FROM music 
                          LEFT JOIN tags ON music.id = tags.music_id 
                       WHERE music.id = ?`
+const QDeleteTag = `DELETE FROM tags WHERE id = ?`
 module.exports.QInsertMusic = QInsertMusic;
 module.exports.QSelectMusic = QSelectMusic;
 module.exports.QSelectAllMusics = QSelectAllMusics;
@@ -39,3 +40,4 @@ module.exports.QSaveTags = QSaveTags;
 module.exports.QUpdateMusic = QUpdateMusic;
 module.exports.QUpdateTag = QUpdateTag;
 module.exports.QDeleteMusic = QDeleteMusic;
+module.exports.QDeleteTag = QDeleteTag;
