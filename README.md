@@ -1,4 +1,4 @@
-<h1>Upload of music and audiobook</h1>
+<h1>Upload of music and create audiobook</h1>
 
 <h3>Technology used in project</h3>
 Docker-composer for local ambient at develop  <br/>
@@ -10,15 +10,15 @@ Docker node container app </br>
 <h3>Required ports</h3>
 MySql 3308, APP 3000
 <h3>Required to start  project</h3>
-Docker-composer MySql , Nodejs, and NPM
+Docker-composer MySql , Nodejs and NPM
 
 <h3>Step by step for start project
-<h4>1° copy the project</h4> 
+<h4>1° Copy the project</h4> 
 <pre>
     git clone https://github.com/20100000/doze_min.git<br/>
     cd doze_min
 </pre>
-<h4>2° install dependencies</h4>  
+<h4>2° Install dependencies</h4>  
 <pre>
     npm install
 </pre>
@@ -28,12 +28,12 @@ Docker-composer MySql , Nodejs, and NPM
 </pre>
 
 <h4> APIs</h4>
-show all audiobook 
+Show all audiobook 
 <pre>
 GET
 http://localhost:3000/music
 </pre>
-show only one music
+Show only one music
 <pre>
 GET
 http://localhost:3000/music/1
