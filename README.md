@@ -35,6 +35,17 @@ Docker-composer MySql , Nodejs and NPM
         "email": "teste@12min.com"
     }
 </pre>
+<h4>Upload file </h4>
+<pre>
+  curl --request POST \
+    --url http://localhost:3000/song/file \
+    --header 'cache-control: no-cache' \
+    --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+    --header 'postman-token: d39268e6-a7f8-0720-30fa-6818d23cfa82' \
+    --form audio=@teste.mp3
+</pre>
+get return data name file.
+<br>
 <h4> APIs with token in Authorization header, add bearer</h4>
 Show all audiobook 
 <pre>
