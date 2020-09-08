@@ -1,7 +1,10 @@
 const toJsonObject = async (data) =>{
     data.forEach((item,idx) => {
         item.tags = JSON.parse(item.tags)
+        item.playMusic = 'http://localhost:3000/music/play/'+item.file_path;
+
     });
+
     return data;
 }
 

@@ -35,8 +35,7 @@ Docker-composer MySql , Nodejs and NPM
         "email": "teste@12min.com"
     }
 </pre>
-Copy toker in return and add  to Header key Authorization Bearer + token
-
+copy the token on return and add in the header Authorization Bearer + token for the other apis
 <br>
 <h4> APIs with token in Authorization header, add bearer</h4>
 <h4>Upload file </h4>
@@ -48,7 +47,7 @@ Copy toker in return and add  to Header key Authorization Bearer + token
    --header 'postman-token: d57fc380-3dea-71bb-6aa6-5ac24e7f9ee8' \
    --form music=@teste.mp3
 </pre>
-get return data name file to add in file_path to save and update music.
+get return data name file to add in file_path for save and update music.
 
 Show all audiobook 
 <pre>
@@ -72,6 +71,7 @@ Play music
 get return in json "file_path": "1599242572752-517991237-teste.mp3",
 
 GET
+URL + file_path or use playMusic for data return
 http://localhost:3000/music/play/1599242572752-517991237-teste.mp3
 </pre>
 
